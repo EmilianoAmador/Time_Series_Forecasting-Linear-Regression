@@ -1,80 +1,48 @@
-# Unit 10—A Yen for the Future
-
+# A Yen for the Future:
 ![Yen Photo](Images/unit-10-readme-photo.png)
+## Time Series Analysis and Linear Regression of the Yen Against the USD
 
-## Background
+This project evaluates the performance of various techniques applied in a time series forcasting for the historic values of the Japanese Yen (JPY) against the United States Dollar (USD). It also takes a look in evaluating the accuracy of future value predictions by using a Linear Regression of the JPY lagged returns. 
 
-The financial departments of large companies often deal with foreign currency transactions while doing international business. As a result, they are always looking for anything that can help them better understand the future direction and risk of various currencies. Hedge funds, too, are keenly interested in anything that will give them a consistent edge in predicting currency movements.
+![](../Images/Historic_values.gif)
 
-In this assignment, you will test the many time-series tools that you have learned in order to predict future movements in the value of the Japanese yen versus the U.S. dollar.
+Summary of techniques used:
 
-You will gain proficiency in the following tasks:
+### Decomposition Using a Hodrick-Prescott Filter
+Using a Hodrick-Prescott Filter, decompose the Settle price into a trend and noise. Plotting the smooth trend (orange) against the actual price (blue) reveals tradable opportunities. If the blue line falls below the orange then we can conclude that the Yen is temporarily undervalued and therefore can serve as a short term buying opportunity.
+![](../Images/SettleVSTrend.png)
 
-1. Time Series Forecasting
-2. Linear Regression Modeling
+Similar to the Trend, the noise also reveals buying and selling opportunity. Values above zero indicates to sell, while values below zero indicate to buy.
+![](../Images/Noise.png)
 
+### ARMA 
+This forecasting model makes future value predictions based on the stationary data of the settle prices. We used the yen's daily percent change in order to make a non-stationary data such as the Settle price of the Yen into stationary (daily percent change). The Graph below demonstrates a 5-day future prediction of the daily percent change of the Yen vs USD.
 
-- - -
+![](../Images/ARMA2.png)
+![](../Images/ARMA.png)
 
-### Files
+### ARIMA
+This forecasting model predicts the future values of the Yen's Settle price for the next 5 days. Unlike the ARMA, the ARIMA allows for non-stationary values to be used. In this case we used the actual settle price of the Yen.
 
-[Time-Series Starter Notebook](Starter_Code/time_series_analysis.ipynb)
+![](../Images/ARIMA2.png)
+![](../Images/ARIMA.png)
 
-[Linear Regression Starter Notebook](Starter_Code/regression_analysis.ipynb)
+### GARCH
+GARCH allows us to predict the volatility associated with the future values of the Yen. The Graph below demonstrates that the volatility of the Yen against the USD will increase within the next 5 days. This can be due to the drastic fluctuations of price throughout the years.
 
-[Yen Data CSV File](Starter_Code/yen.csv)
+![](../Images/GARCH2.png)
+![](../Images/GARCH.png)
 
-- - -
+#### Conclusion For Time Series Analysis:
+Based on your time series analysis, would you buy the yen now?
+Is the risk of the yen expected to increase or decrease?
+Based on the model evaluation, would you feel confident in using these models for trading?
 
-### Instructions
+Based on the model evaluation I would not feel confident in using these models for trading. The reasoning behind this decision is based on the poor p-values that the ARMA and ARIMA models yield. On top of this issue, the GARCH model predicts that the volatility of the yen against the dollar will increase. Therefore, I would not make a decision based on this model. If the models had better statistical performance then I would certainly buy considering that the model predicts the yen will appreciate in the next 5 days.
 
-#### Time-Series Forecasting
+### Linear Regression
+This forecasting model takes the lagged returns of the Yen's settle price (training data) and makes predictions based on this information (testing data). Using the RMSE we were able to compare its performance.
 
-In this notebook, you will load historical Dollar-Yen exchange rate futures data and apply time series analysis and modeling to determine whether there is any predictable behavior.
+![](../Images/Linear_regression.png)
 
-Follow the steps outlined in the time-series starter notebook to complete the following:
-
-1. Decomposition using a Hodrick-Prescott Filter (Decompose the Settle price into trend and noise).
-2. Forecasting Returns using an ARMA Model.
-3. Forecasting the Settle Price using an ARIMA Model.
-4. Forecasting Volatility with GARCH.
-
-Use the results of the time series analysis and modeling to answer the following questions:
-
-1. Based on your time series analysis, would you buy the yen now?
-2. Is the risk of the yen expected to increase or decrease?
-3. Based on the model evaluation, would you feel confident in using these models for trading?
-
-
-#### Linear Regression Forecasting
-
-In this notebook, you will build a Scikit-Learn linear regression model to predict Yen futures ("settle") returns with *lagged* Yen futures returns and categorical calendar seasonal effects (e.g., day-of-week or week-of-year seasonal effects).
-
-Follow the steps outlined in the regression_analysis starter notebook to complete the following:
-
-1. Data Preparation (Creating Returns and Lagged Returns and splitting the data into training and testing data)
-2. Fitting a Linear Regression Model.
-3. Making predictions using the testing data.
-4. Out-of-sample performance.
-5. In-sample performance.
-
-Use the results of the linear regression analysis and modeling to answer the following question:
-
-* Does this model perform better or worse on out-of-sample data compared to in-sample data?
-
-- - -
-
-### Hints and Considerations
-
-* Out-of-sample data is data that the model hasn't seen before (Testing data).
-* In-sample data is data that the model was trained on (Training data).
-
-- - -
-
-### Submission
-
-* Create Jupyter Notebooks for the analysis and host the notebooks on GitHub.
-
-* Include a Markdown that summarizes your models and findings and include this report in your GitHub repo.
-
-* Submit the link to your GitHub project to Bootcampspot.
+Upon assessing this model with the square root mean sample error (RMSE) it is evident that it performs best with the out-of-sample data (data it has not seen before) yielding an RMSE of .4152, while the RMSE in the in-sample data (or training data) yielded .5658 upon calculation. This lower value for the out-of-sample indicates that testing data has a looser fit to the regression line than that of training data. Typically, the out-of-sample RMSE is higher than the training RMSE, but in this case it is the other way around.
