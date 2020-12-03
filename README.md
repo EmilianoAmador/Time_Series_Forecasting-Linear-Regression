@@ -4,13 +4,13 @@
 
 This project evaluates the performance of various techniques applied in a time series forcasting for the historic values of the Japanese Yen (JPY) against the United States Dollar (USD). It also takes a look in evaluating the accuracy of future value predictions by using a Linear Regression of the JPY lagged returns. 
 
-![](../Images/Historic_values.gif)
+![](../Historic_values.gif)
 
 Summary of techniques used:
 
 ### Decomposition Using a Hodrick-Prescott Filter
 Using a Hodrick-Prescott Filter, decompose the Settle price into a trend and noise. Plotting the smooth trend (orange) against the actual price (blue) reveals tradable opportunities. If the blue line falls below the orange then we can conclude that the Yen is temporarily undervalued and therefore can serve as a short term buying opportunity.
-![](../Images/SettleVSTrend.png)
+![](../SettleVSTrend.png)
 
 Similar to the Trend, the noise also reveals buying and selling opportunity. Values above zero indicates to sell, while values below zero indicate to buy.
 ![](../Images/Noise.png)
