@@ -1,7 +1,7 @@
 # A Yen for the Future: 
 ## Time Series Analysis and Linear Regression of the Yen Against the USD
 
-This activity evaluates the performance of various techniques applied in a time series forcasting for the historic values of the Japanese Yen (JPY) against the United States Dollar (USD). It also takes a look in evaluating the accuracy of future value predictions by using a Linear Regression of the JPY lagged returns. 
+This project evaluates the performance of various techniques applied in a time series forcasting for the historic values of the Japanese Yen (JPY) against the United States Dollar (USD). It also takes a look in evaluating the accuracy of future value predictions by using a Linear Regression of the JPY lagged returns. 
 
 ![](../Images/Historic_values.gif)
 
