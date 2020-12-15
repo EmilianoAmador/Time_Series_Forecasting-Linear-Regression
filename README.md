@@ -1,9 +1,12 @@
 # A Yen for the Future: Time Series Analysis and Linear Regression of the Japanese Yen Against the USD
 ![Yen Photo](Images/unit-10-readme-photo.png)
 <br/>
+<br/>
 It's 2020, many companies have globalized and continue to do so every day. However, being global comes with the extra homework of dealing with the exchange rates of foreign currencies. To understand the behavior of these fluctuating currencies, the financial department must develop techniques that will increase the company's predictive accuracy while doing international business. 
 <br/>
+<br/>
 The demand for accurate tools that forecast exchange rate behavior is large. Even local trading firms such as hedge funds are highly interested in anything that will give them a consistent upper-hand in predicting currency movements. 
+<br/>
 <br/>
 To better understand foreign currency behavior, I used Japanese Yen vs. USD Futures data to create two forecasting models: time series forecasting and linear regression forecasting. The time series forecasting technique splits the data into various trends and analyzes each individually. The linear regression model uses algorithms to predict Yen futures ("settle") returns. Lastly, I examined the accuracy of the models and whether they could help in understanding the future direction of these currencies.
 <br/>
